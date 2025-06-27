@@ -63,35 +63,53 @@ const UserForm: React.FC<UserFormProps> = ({ defaultValues, onResetEditing }) =>
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 max-w-xl p-4 border rounded-xl shadow-md bg-white">
+    <form 
+      onSubmit={handleSubmit(onSubmit)} 
+      className="space-y-4 w-full max-w-md md:max-w-xl p-3 sm:p-4 border rounded-xl shadow-md bg-white mx-auto"
+    >
       <div>
-        <label className="block font-semibold">Name</label>
-        <input {...register("name")} className="w-full border px-3 py-2 rounded" />
-        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
+        <label className="block font-semibold text-sm sm:text-base">Name</label>
+        <input 
+          {...register("name")} 
+          className="w-full border px-3 py-1 sm:py-2 rounded text-sm sm:text-base" 
+        />
+        {errors.name && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.name.message}</p>}
       </div>
 
       <div>
-        <label className="block font-semibold">Age</label>
-        <input type="number" {...register("age")} className="w-full border px-3 py-2 rounded" />
-        {errors.age && <p className="text-red-500 text-sm">{errors.age.message}</p>}
+        <label className="block font-semibold text-sm sm:text-base">Age</label>
+        <input 
+          type="number" 
+          {...register("age")} 
+          className="w-full border px-3 py-1 sm:py-2 rounded text-sm sm:text-base" 
+        />
+        {errors.age && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.age.message}</p>}
       </div>
 
       <div>
-        <label className="block font-semibold">Gender</label>
-        <div className="flex gap-4">
+        <label className="block font-semibold text-sm sm:text-base">Gender</label>
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-4">
           {["Male", "Female", "Other"].map((g) => (
-            <label key={g}>
-              <input type="radio" value={g} {...register("gender")} className="mr-1" />
+            <label key={g} className="flex items-center text-sm sm:text-base">
+              <input 
+                type="radio" 
+                value={g} 
+                {...register("gender")} 
+                className="mr-2" 
+              />
               {g}
             </label>
           ))}
         </div>
-        {errors.gender && <p className="text-red-500 text-sm">{errors.gender.message}</p>}
+        {errors.gender && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.gender.message}</p>}
       </div>
 
       <div>
-        <label className="block font-semibold">State</label>
-        <select {...register("state")} className="w-full border px-3 py-2 rounded">
+        <label className="block font-semibold text-sm sm:text-base">State</label>
+        <select 
+          {...register("state")} 
+          className="w-full border px-3 py-1 sm:py-2 rounded text-sm sm:text-base"
+        >
           <option value="">Select a state</option>
           {STATES.map((s) => (
             <option key={s} value={s}>
@@ -99,11 +117,14 @@ const UserForm: React.FC<UserFormProps> = ({ defaultValues, onResetEditing }) =>
             </option>
           ))}
         </select>
-        {errors.state && <p className="text-red-500 text-sm">{errors.state.message}</p>}
+        {errors.state && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.state.message}</p>}
       </div>
 
-      <div className="flex gap-2">
-        <button type="submit" className="bg-green-500 text-white px-4 py-2 rounded">
+      <div className="flex flex-col sm:flex-row gap-2">
+        <button 
+          type="submit" 
+          className="bg-green-500 text-white px-3 py-1 sm:px-4 sm:py-2 rounded text-sm sm:text-base"
+        >
           {defaultValues ? "Update User" : "Add User"}
         </button>
         {defaultValues && (
@@ -113,7 +134,7 @@ const UserForm: React.FC<UserFormProps> = ({ defaultValues, onResetEditing }) =>
               reset();
               onResetEditing?.();
             }}
-            className="bg-gray-400 text-white px-4 py-2 rounded"
+            className="bg-gray-400 text-white px-3 py-1 sm:px-4 sm:py-2 rounded text-sm sm:text-base"
           >
             Cancel
           </button>
